@@ -1,0 +1,26 @@
+<h2>Products</h2>
+
+<!-- 結構型指令 *ngFor，會把這個 <div> 針對列表中的每個產品進行復寫-->
+<div *ngFor="let product of products">
+  <!-- 連結到商品詳情 -->
+  <h3>
+    <a
+      [title]="product.name + 'details'"
+      [routerLink]="['/products', product.id]"
+    >
+      商品名稱：{{ product.name }}</a
+    >
+  </h3>
+  <!-- 使用 *ngIf 指令，以便 Angular 只讓當前產品有描述 <p> -->
+  <p *ngIf="product.description">Desc.：{{ product.description }}</p>
+  <!-- 事件繫結要在此事件用一組圓括號 ( ) 括起來 -->
+  <button type="button" (click)="share()">Share</button>
+
+  <app-product-alerts [product]="product" (notify)="onNotify()">
+  </app-product-alerts>
+</div>
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
